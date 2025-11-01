@@ -1,9 +1,13 @@
 /* Variabili colore (basate su brand eGlue, modificabili) */
 :root {
-	--brand-primary: #2A315F;  	/* blu eGlue */
-		--brand-secondary: #E41840; /* Porpora eGlue */
-	--brand-accentGreen: #86A44C; /* verde sostenibilità */
-	--brand-accentGreenBtn: #25c281; /* verde sostenibilità acceso */
+	--brand-primary: #2A315F;
+	/* blu eGlue */
+	--brand-secondary: #E41840;
+	/* Porpora eGlue */
+	--brand-accentGreen: #86A44C;
+	/* verde sostenibilità */
+	--brand-accentGreenBtn: #25c281;
+	/* verde sostenibilità acceso */
 	--text: #1c1c1c;
 	--muted: #667085;
 	--bg: #ffffff;
@@ -535,13 +539,174 @@ a:hover {
 	transition: transform .25s ease;
 }
 
-/* Stato aperto: ruota chevron */
-.expander[aria-open="true"] .chevron {
-	transform: rotate(180deg);
-}
-
 .impronta-company-logo {
 	width: 30px;
 	height: 30px;
 	margin-inline: auto;
+}
+
+/* Simulatore */
+.simu-grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	margin-top: .5rem
+}
+
+.simu-field label {
+	display: block;
+	font-size: .9rem;
+	margin-bottom: .35rem
+}
+
+.simu-field input,
+.simu-field select {
+	width: 100%;
+	padding: .6rem;
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	background: #fff
+}
+
+.simu-adv {
+	margin-top: .5rem
+}
+
+.simu-adv-grid {
+	display: grid;
+	gap: .75rem;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr))
+}
+
+.simu-actions {
+	margin-top: .25rem
+}
+
+.simu-kpis {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	margin-top: 1rem
+}
+
+.simu-kpi {
+	padding: 1rem;
+	border: 1px dashed #cfd8dc;
+	border-radius: 12px;
+	background: #fff
+}
+
+.simu-kpi-label {
+	display: block;
+	font-size: .9rem;
+	color: var(--muted);
+	margin-bottom: .35rem
+}
+
+.simu-kpi-val {
+	font-size: 1.4rem;
+	font-weight: 700
+}
+
+.simu-note {
+	font-size: .9rem;
+	color: var(--muted);
+	margin-top: 1rem
+}
+
+/* Legenda e fonte */
+.simu-legenda {
+	margin-top: 2rem;
+	background: #f9f9f9;
+	border-radius: 12px;
+	padding: 1.5rem;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+
+.simu-legenda h3 {
+	margin-top: 0;
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+	color: #333;
+}
+
+.simu-tabella-wrapper {
+	width: 100%;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.simu-tabella {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.95rem;
+	min-width: 100%;
+	table-layout: fixed;
+}
+
+.simu-tabella th,
+.simu-tabella td {
+	border: 1px solid #ddd;
+	padding: 0.6rem 0.8rem;
+	text-align: left;
+	vertical-align: top;
+	word-wrap: break-word;
+}
+
+.simu-tabella th {
+	background: #e6f3eb;
+	font-weight: 700;
+}
+
+.simu-tabella td:nth-child(4) {
+	white-space: normal;
+}
+
+.simu-fonte {
+	font-size: 0.9rem;
+	color: #555;
+	margin-top: 1rem;
+	line-height: 1.4;
+}
+
+/* Mobile fix */
+@media (max-width: 600px) {
+	.simu-legenda {
+		padding: 1rem;
+	}
+
+	.simu-tabella {
+		display: block;
+		width: 100%;
+		font-size: 0.9rem;
+		border: none;
+	}
+
+	.simu-tabella thead {
+		display: none;
+	}
+
+	.simu-tabella tbody tr {
+		display: block;
+		margin-bottom: 1rem;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+		padding: 0.5rem 0.8rem;
+		background: #fff;
+	}
+
+	.simu-tabella tbody td {
+		display: flex;
+		justify-content: space-between;
+		padding: 0.3rem 0;
+		border: none;
+	}
+
+	.simu-tabella tbody td::before {
+		content: attr(data-label);
+		font-weight: 600;
+		color: #333;
+		margin-right: 0.5rem;
+	}
 }
