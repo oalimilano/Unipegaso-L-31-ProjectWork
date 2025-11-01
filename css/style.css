@@ -1,18 +1,19 @@
-/* ===== Variabili colore (basate su brand eGlue, modificabili) ===== */
+/* Variabili colore (basate su brand eGlue, modificabili) */
 :root {
-	--brand-primary: #2A315F;
-	/* blu eGlue */
-	--brand-accent: #25c281;
-	/* verde sostenibilità */
+	--brand-primary: #2A315F;  	/* blu eGlue */
+		--brand-secondary: #E41840; /* Porpora eGlue */
+	--brand-accentGreen: #86A44C; /* verde sostenibilità */
+	--brand-accentGreenBtn: #25c281; /* verde sostenibilità acceso */
 	--text: #1c1c1c;
 	--muted: #667085;
 	--bg: #ffffff;
 	--bg-soft: #f6f7f9;
 	--border: #e6e6e6;
 	--white: #ffffff;
+	--image-impronta-background: url("../img/eco-green.jpg");
 }
 
-/* ===== Reset base ===== */
+/* Reset base */
 * {
 	box-sizing: border-box
 }
@@ -49,7 +50,7 @@ a:hover {
 	margin-inline: auto
 }
 
-/* ===== Accessibilità ===== */
+/* Accessibilità */
 .skip-link {
 	position: absolute;
 	left: -9999px;
@@ -69,7 +70,7 @@ a:hover {
 	border: 1px solid var(--border);
 }
 
-/* ===== Header ===== */
+/* Header */
 .site-header {
 	background: #fff;
 	border-bottom: 1px solid var(--border);
@@ -96,7 +97,7 @@ a:hover {
 	color: var(--brand-primary)
 }
 
-/* ===== Hero ===== */
+/* Hero */
 .hero {
 	position: relative;
 	overflow: hidden;
@@ -127,7 +128,7 @@ a:hover {
 }
 
 .hero .accent {
-	color: var(--brand-accent)
+	color: var(--brand-accentGreenBtn)
 }
 
 .lead {
@@ -142,7 +143,7 @@ a:hover {
 	max-width: 60ch
 }
 
-/* ===== Sezioni ===== */
+/* Sezioni */
 .section {
 	padding: 2rem 0;
 	border-top: 1px solid var(--border)
@@ -186,7 +187,9 @@ a:hover {
 }
 
 .btn {
-	display: inline-block;
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
 	margin-top: .5rem;
 	padding: .6rem .9rem;
 	border: 1px solid var(--text);
@@ -194,6 +197,12 @@ a:hover {
 	background: #fff;
 	color: var(--text);
 	font-weight: 600;
+}
+
+.btn-icon {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
 }
 
 .btn:hover {
@@ -207,7 +216,13 @@ a:hover {
 	background: var(--brand-primary)
 }
 
-/* ===== Footer ===== */
+.btn.secondary:hover {
+	border-color: var(--brand-secondary);
+	color: #fff;
+	background: var(--brand-secondary)
+}
+
+/* Footer */
 .site-footer {
 	padding: 1.2rem 0;
 	border-top: 1px solid var(--border);
@@ -244,10 +259,14 @@ a:hover {
 	filter: brightness(0.7);
 }
 
-/* ===== Sezione evidenziata (caso Acinque) ===== */
+/* Sezione evidenziata (caso Acinque) */
 .section.highlight {
-	background: #e4f3ea;
-	border-top: 3px solid var(--brand-accent);
+	background-image: var(--image-impronta-background);
+	background-color: #cccccc;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-top: 3px solid var(--brand-accentGreen);
 	padding: 3rem 0;
 }
 
@@ -308,8 +327,8 @@ a:hover {
 
 .graph-note .btn.secondary {
 	font-weight: 600;
-	border-color: var(--brand-accent);
-	background: var(--brand-accent);
+	border-color: var(--brand-accentGreenBtn);
+	background: var(--brand-accentGreenBtn);
 	color: #fff;
 }
 
@@ -368,7 +387,7 @@ a:hover {
 .compare-head {
 	font-weight: 700;
 	letter-spacing: .5px;
-	margin: .25rem 0 1rem
+	margin: .25rem 0 2.2rem
 }
 
 .bars {
@@ -458,7 +477,7 @@ a:hover {
 	}
 }
 
-/* ===== Expandable (apri/chiudi) ===== */
+/* Expandable (apri/chiudi) */
 .expander {
 	margin-top: .5rem;
 }
@@ -496,9 +515,16 @@ a:hover {
 	background: #f9fffb;
 }
 
-/* leggera tinta nella sezione verde */
 .expander-toggle:hover {
 	background: #f1f5f9;
+}
+
+.expander-toggle div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex-wrap: wrap;
 }
 
 .expander-title {
@@ -512,4 +538,10 @@ a:hover {
 /* Stato aperto: ruota chevron */
 .expander[aria-open="true"] .chevron {
 	transform: rotate(180deg);
+}
+
+.impronta-company-logo {
+	width: 30px;
+	height: 30px;
+	margin-inline: auto;
 }
