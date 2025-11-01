@@ -28,6 +28,76 @@
           });
       }
   }
+  // --- SIMULATORE (versione offline, semplice e difendibile) ---
+  function initSimulatore() {
+      var msg = document.getElementById('simu-msg');
+      var btn = document.getElementById('simu_calcola');
+
+      var inviiEl = document.getElementById('simu_invii');
+      var presetEl = document.getElementById('simu_preset');
+      var wrapCustom = document.getElementById('simu_wrap_custom');
+      var fogliMedEl = document.getElementById('simu_fogli_med');
+
+      var outFogli = document.getElementById('out_fogli');
+      var outAlberi = document.getElementById('out_alberi');
+      var outAcqua = document.getElementById('out_acqua');
+      var outCO2 = document.getElementById('out_co2');
+
+      if (!btn) return;
+
+      // Valori di default (usati in locale)
+      var cAlb = 0.000012;
+      var cH2O = 2.2;
+      var cCO2foglio = 3.5;
+      var cCO2mail = 2.1;
+
+      // Messaggio informativo
+      if (msg) msg.textContent = "In modalità locale vengono usati i coefficienti di default.";
+
+      // Calcolo fogli medi
+      function getFogliMedi() {
+          if (presetEl.value === 'custom') {
+              return parseFloat(fogliMedEl.value || 0);
+          } else {
+              return parseFloat(presetEl.value || 0);
+          }
+      }
+
+      function formatIT(n) {
+          var num = Math.round(n * 100) / 100;
+          return num.toLocaleString('it-IT');
+      }
+
+      function calcola() {
+          var invii = parseFloat(inviiEl.value || 0);
+          var fogli = getFogliMedi();
+
+          var fogliEv = invii * fogli;
+          var alberi = fogliEv * cAlb;
+          var acqua = fogliEv * cH2O;
+          var co2Cart = fogliEv * cCO2foglio;
+          var co2Mail = invii * cCO2mail;
+          var co2Net = co2Cart - co2Mail;
+
+          outFogli.textContent = formatIT(fogliEv);
+          outAlberi.textContent = formatIT(alberi);
+          outAcqua.textContent = formatIT(acqua);
+          outCO2.textContent = formatIT(co2Net);
+      }
+
+      presetEl.addEventListener('change', function() {
+          if (presetEl.value === 'custom') {
+              wrapCustom.style.display = 'block';
+          } else {
+              wrapCustom.style.display = 'none';
+          }
+      });
+
+      btn.addEventListener('click', calcola);
+
+      // Calcolo iniziale automatico
+      calcola();
+  }
 
   // Al caricamento del'intero DOM
   window.addEventListener('load', () => {
@@ -42,8 +112,9 @@
               dashboard.style.display = "block";
           }
       }, 2000);
-	  
+
       initAcinqueExpander();
+      initSimulatore();
 
       // aggiorna l’anno nel footer
       let myElemFooterYear = document.getElementById('year');
